@@ -4,72 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Météo à Tokyo</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 50px;
-        }
-        .weather-info {
-            display: inline-block;
-            text-align: left;
-            background-color: #f0f0f0;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .weather-info h2 {
-            margin-bottom: 20px;
-        }
-        .weather-info p {
-            font-size: 18px;
-            margin: 5px 0;
-        }
-    </style>
+	<link rel="stylesheet" href="style.css">
+	<script type="text/javascript" src="weather.js"></script>
 </head>
 <body>
-
     <h1>Météo à Tokyo</h1>
-    <div id="weather" class="weather-info">
-        
-    </div>
-
-    <script>
-        const apiKey = '3e677316641500a361226f557a5862f9';
-        const city = 'Tokyo';
-        const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=fr`;
-
-        
-        function getWeather() {
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.cod === 200) {
-                        const temperature = data.main.temp;
-                        const pressure = data.main.pressure;
-                        const humidity = data.main.humidity;
-                        const description = data.weather[0].description;
-
-                        const weatherInfo = `
-                            <h2>Météo à ${city} :</h2>
-                            <p>Température : ${temperature}°C</p>
-                            <p>Pression : ${pressure} hPa</p>
-                            <p>Humidité : ${humidity}%</p>
-                            <p>Conditions : ${description.charAt(0).toUpperCase() + description.slice(1)}</p>
-                        `;
-                        document.getElementById('weather').innerHTML = weatherInfo;
-                    } else {
-                        document.getElementById('weather').innerHTML = `<p>Erreur : Impossible de récupérer les informations météo.</p>`;
-                    }
-                })
-                .catch(error => {
-                    document.getElementById('weather').innerHTML = `<p>Erreur : ${error}</p>`;
-                });
-        }
-
-        
-        getWeather();
-    </script>
-
+	<button onclick="getWeather();">Click</button>   
+	<br />	
+    <div id="weather" class="weather-info"/>
+      
 </body>
 </html>
